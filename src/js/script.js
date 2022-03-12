@@ -44,13 +44,13 @@
             console.log('clicked');
             event.preventDefault();
 
-            favouriteBook = document.querySelector('.book a.favorite');
+            favoriteBook = document.querySelector('.book a.favorite');
 
-            if(favouriteBook){
+            if(favoriteBook){
             thisBook.bookImage.classList.toggle('favorite');
             } else
             thisBook.bookImage.classList.toggle('favorite');
-            
+
             console.log('thisBook', thisBook.bookImage);
             const bookImage = thisBook.bookImage.getAttribute('data-id');
             favoriteBooks.push(bookImage);
