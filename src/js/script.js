@@ -43,8 +43,8 @@
         thisBook.accordionTrigger.addEventListener('dblclick', function(event){
             console.log('clicked');
             event.preventDefault();
-            thisBook.element.classList.toggle('favorite');
-            console.log('thisBook', thisBook.element);
+            thisBook.bookImage.classList.toggle('favorite');
+            console.log('thisBook', thisBook.bookImage);
             const bookImage = thisBook.bookImage.getAttribute('data-id');
             favoriteBooks.push(bookImage);
 
