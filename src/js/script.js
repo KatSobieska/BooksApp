@@ -75,17 +75,36 @@
         filter.tagName == 'INPUT' &&
         filter.type == 'checkbox' &&
         filter.name == 'filter'
-      )
+      ) {
         if (filter.checked == true) {
           filters.push(filter.value);
         } else {
           filters.splice(filters.indexOf(filter.value));
         }
-      {
-        console.log('value', filter.value);
-        console.log('filters', filters);
       }
+      filterBooks();
+      console.log('value', filter.value);
+      console.log('filters', filters);
     });
+  };
+  const filterBooks = function () {
+    //const thisBook = this;
+
+    for (const book in dataSource.books) {
+      let shouldBeHidden = false;
+      for (const filter of filters) {
+        if (!book.details[filter]) {
+          shouldBeHidden = true;
+          break;
+        }
+      }
+      if (shouldBeHidden == true) {
+        const hiddenImage = document.querySelectorAll(
+          '.book__image[data-id="bookImageId"]'
+        );
+        hiddenImage.classList.toggle('hidden');
+      } else hiddenImage.classList.toggle('hidden');
+    }
   };
 
   render();
