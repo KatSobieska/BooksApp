@@ -88,23 +88,25 @@
     });
   };
   const filterBooks = function () {
-    //const thisBook = this;
-
-    for (const book in dataSource.books) {
+    for (let book of dataSource.books) {
       let shouldBeHidden = false;
-      for (const filter of filters) {
+      for (let filter of filters) {
         if (!book.details[filter]) {
           shouldBeHidden = true;
           break;
         }
       }
+
       if (shouldBeHidden == true) {
-        const hiddenImage = document.querySelectorAll(
-          '.book__image[data-id="bookImageId"]'
-        );
-        hiddenImage.classList.toggle('hidden');
-      } else hiddenImage.classList.toggle('hidden');
+        const bookImage = document.querySelector('[data-id="' + book.id + '"]');
+        bookImage.classList.add('hidden');
+      } else {
+        const bookImage = document.querySelector('[data-id="' + book.id + '"]');
+        bookImage.classList.remove('hidden');
+      }
     }
+
+    console.log('bookImage', bookImage);
   };
 
   render();
