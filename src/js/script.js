@@ -11,6 +11,9 @@
     element: {
       bookImage: '.book__image',
     },
+    form: {
+      filters: '.filters',
+    },
   };
   const templates = {
     bookProduct: Handlebars.compile(
@@ -35,6 +38,7 @@
   };
 
   const favoriteBooks = [];
+  const filters = [];
 
   const initActions = function () {
     const thisBook = this;
@@ -43,6 +47,7 @@
       select.containerOf.booksList
     );
     thisBook.bookImage = thisBook.accordionTrigger.querySelectorAll('.book a');
+    thisBook.filterForm = thisBook.document.querySelector(select.form.filters);
 
     thisBook.accordionTrigger.addEventListener('dblclick', function (event) {
       event.preventDefault();
@@ -60,7 +65,26 @@
           favoriteBooks.push(bookImageId);
         }
       }
+
       console.log('favoriteBooks', favoriteBooks);
+    });
+
+    thisBook.filterForm.addEventListener('click', function (event) {
+      const filter = event.target;
+      if (
+        filter.tagName == 'INPUT' &&
+        filter.type == 'checkbox' &&
+        filter.name == 'filter'
+      )
+        if (filter.checked == true) {
+          filters.push(filter.value);
+        } else {
+          filters.splice(filters.indexOf(filter.value));
+        }
+      {
+        console.log('value', filter.value);
+        console.log('filters', filters);
+      }
     });
   };
 
